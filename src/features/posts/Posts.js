@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LuArrowBigUp } from "react-icons/lu";
 import { LuArrowBigDown } from "react-icons/lu";
 import { FaRegCommentAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import {
+  selectError,
+  selectLoading,
+  selectSubreddit,
+} from "../subReddits/subredditsSlice";
+import Loader from "../../components/loader";
 
 export default function Posts() {
+  const loadingSubreddit = useSelector(selectLoading);
+  const subreddit = useSelector(selectSubreddit);
+
+  useEffect(() => {
+    console.log(subreddit);
+  },[subreddit]);
+
+  
   const posts = [
     {
       id: 1,
@@ -46,6 +61,10 @@ export default function Posts() {
     },
   ];
 
+  if (loadingSubreddit) {
+    return <Loader />;
+  }
+
   return (
     <div className="flex flex-col gap-4">
       {posts.map((post, index) => {
@@ -63,7 +82,7 @@ export default function Posts() {
               <hr className="bg-base-100"></hr>
               <div className="flex flex-row gap-2 items-center">
                 <div>{post.time}</div>
-                <FaRegCommentAlt size={20}/>
+                <FaRegCommentAlt size={20} />
               </div>
             </div>
           </div>
