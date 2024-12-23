@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { FaRegCommentAlt } from "react-icons/fa";
+import React from "react";
 import { useSelector } from "react-redux";
 import {
-  selectError,
   selectLoading,
   selectSubreddit,
 } from "../subReddits/subredditsSlice";
