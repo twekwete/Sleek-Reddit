@@ -21,8 +21,13 @@ const options = {
     subreddit: {},
     isLoading: false,
     hasError: false,
+    searchTerm: ""
   },
-  reducers: {},
+  reducers: {
+    setSearchTerm: (state,action) => {
+      state.searchTerm = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSubReddit.pending, (state, action) => {
@@ -82,6 +87,13 @@ export const selectSubreddit = (state) => {
       commentsCount: element.data.num_comments || 0,
     };
 
+    const searchTerm = state.subreddit.searchTerm;
+
+    if(searchTerm){
+      if(subRedditPostRequiredFields.title.includes(searchTerm))  filteredSubRedditData.push(subRedditPostRequiredFields);
+      return;
+    }
+
     filteredSubRedditData.push(subRedditPostRequiredFields)
   });
 
@@ -89,3 +101,4 @@ export const selectSubreddit = (state) => {
 };
 export const selectLoading = (state) => state.subreddit.isLoading;
 export const selectError = (state) => state.subreddit.hasError;
+export const {setSearchTerm} = subredditSlice.actions;
