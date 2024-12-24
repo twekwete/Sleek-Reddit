@@ -1,4 +1,4 @@
-SleekReddit
+# SleekReddit
 Welcome to SleekReddit, a lightweight and user-friendly Reddit client designed to provide a sleek browsing experience. Built with React and Redux, SleekReddit allows you to explore Reddit's vast content effortlessly, from trending posts to detailed comments.
 
 Explore it live: https://sleek-reddit.netlify.app/
